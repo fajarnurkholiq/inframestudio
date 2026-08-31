@@ -1,286 +1,1729 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INFRAME.STUDIO — Self Photo & Photobox</title>
-<meta name="description" content="INFRAME.STUDIO — Self Photo & Photobox. Booking langsung via WhatsApp.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --offwhite: #F6F1E7;
-    --white: #FFFFFF;
-    --dark: #211D17;
-    --gray: #6E665A;
-    --border: #E1D7C4;
-    --gold: #96733F;
-    --gold-light: rgba(150, 115, 63, 0.1);
-  }
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0; padding:0; background:var(--offwhite); color:var(--dark);
-    font-family:'Manrope',sans-serif; min-height:100vh;
-  }
-  .wrap{ max-width:480px; margin:0 auto; }
-  a{ color:inherit; }
-  img{ max-width:100%; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KaveloLab — AI & Technology Lab</title>
+  <meta name="description" content="KaveloLab adalah AI & Technology Lab. Bikin website, eksperimen AI, dan project teknologi untuk bisnis dan personal brand." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23132322'/%3E%3Ctext x='32' y='44' font-family='Inter, sans-serif' font-size='36' font-weight='700' fill='%233ddc91' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=Inter:opsz,wght@14..32,400;14..32,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       SAUCE LABS — Design System
+       ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  h1,h2,h3,.serif{ font-family:'Fraunces',serif; }
+    :root {
+      /* Colors */
+      --color-obsidian-shell: #132322;
+      --color-pure-white: #ffffff;
+      --color-mint-frost: #edf7f5;
+      --color-deep-abyss: #0e1a19;
+      --color-charcoal: #070f0f;
+      --color-fog-border: #d0d3d3;
+      --color-stone-border: #b2b6b4;
+      --color-slate-text: #828786;
+      --color-graphite-fill: #424f4f;
+      --color-pure-black: #000000;
+      --color-neon-pulse: #3ddc91;
+      --color-mint-whisper: #97ddbc;
+      --color-signal-yellow: #ffcd48;
 
-  .label{
-    font-size:11px; text-transform:uppercase; letter-spacing:0.16em;
-    color:var(--gold); font-weight:600; margin:0 0 10px; text-align:center;
-  }
+      /* Typography */
+      --font-aeonik: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-aeonikfono: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  /* sudut-sudut dekoratif */
-  .frame{ position:relative; }
-  .frame .corner-tl, .frame .corner-tr, .frame .corner-bl, .frame .corner-br{
-    position:absolute; width:16px; height:16px;
-    border-color:var(--gold); border-style:solid; opacity:0.85;
-  }
-  .frame .corner-tl{ top:-1px; left:-1px; border-width:1.5px 0 0 1.5px; }
-  .frame .corner-tr{ top:-1px; right:-1px; border-width:1.5px 1.5px 0 0; }
-  .frame .corner-bl{ bottom:-1px; left:-1px; border-width:0 0 1.5px 1.5px; }
-  .frame .corner-br{ bottom:-1px; right:-1px; border-width:0 1.5px 1.5px 0; }
+      --text-body: 16px;
+      --leading-body: 1.5;
+      --tracking-body: -0.08px;
+      --text-body-sm: 14px;
+      --leading-body-sm: 1.45;
+      --text-body-lg: 18px;
+      --leading-body-lg: 1.45;
+      --text-subheading: 24px;
+      --leading-subheading: 1.4;
+      --tracking-subheading: 0.96px;
+      --text-heading-sm: 32px;
+      --leading-heading-sm: 1.22;
+      --text-heading: 40px;
+      --leading-heading: 1.2;
+      --text-heading-lg: 48px;
+      --leading-heading-lg: 1.12;
+      --text-display: 64px;
+      --leading-display: 1.1;
 
-  /* header */
-  .top{ padding:28px 24px 0; text-align:center; }
-  .logo{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:108px; height:108px; padding:14px; margin:0 auto;
-  }
-  .logo img{ width:100%; height:100%; object-fit:contain; }
-  .logo-fallback{
-    font-family:'Fraunces',serif; font-weight:600; font-size:15px; letter-spacing:0.04em;
-  }
-  .logo-fallback span{ color:var(--gold); }
+      --font-weight-regular: 400;
+      --font-weight-medium: 500;
 
-  /* hero */
-  .masthead{ text-align:center; padding:22px 28px 34px; }
-  .masthead h1{ font-size:30px; font-weight:600; line-height:1.25; margin:0 0 10px; }
-  .masthead h1 em{ color:var(--gold); font-style:italic; }
-  .masthead .sub{ font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gray); margin:0 0 18px; }
-  .masthead .lead{ font-size:13.5px; color:var(--gray); line-height:1.75; margin:0 auto 26px; max-width:340px; }
+      /* Spacing */
+      --spacing-8: 8px;
+      --spacing-16: 16px;
+      --spacing-24: 24px;
+      --spacing-32: 32px;
+      --spacing-40: 40px;
+      --spacing-48: 48px;
+      --spacing-56: 56px;
+      --spacing-64: 64px;
+      --spacing-72: 72px;
+      --spacing-80: 80px;
+      --spacing-96: 96px;
 
-  .btn-wa{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:14px 26px; background:var(--dark); color:var(--offwhite);
-    border-radius:2px; text-decoration:none; font-weight:600; font-size:13.5px;
-    letter-spacing:0.02em; position:relative;
-  }
-  .btn-wa .corner-tl, .btn-wa .corner-tr, .btn-wa .corner-bl, .btn-wa .corner-br{ border-color:var(--offwhite); opacity:0.5; }
-  .btn-wa svg{ width:15px; height:15px; flex-shrink:0; }
+      /* Layout */
+      --page-max-width: 1200px;
+      --section-gap: 80px;
+      --card-padding: 24px;
+      --element-gap: 24px;
 
-  hr.divider{ border:none; border-top:1px solid var(--border); margin:0 24px; }
+      /* Border Radius */
+      --radius-tabs: 56px;
+      --radius-cards: 20px;
+      --radius-buttons: 56px;
+      --radius-largecards: 60px;
+      --radius-smallelements: 10px;
 
-  section{ padding:42px 24px; }
-  section h2{ font-size:22px; font-weight:600; text-align:center; margin:0 0 18px; }
+      /* Shadows */
+      --shadow-md: rgba(0, 0, 0, 0.04) 1px 0px 9px 2px;
 
-  /* tentang */
-  .intro p{
-    font-size:13.5px; color:var(--gray); line-height:1.85; text-align:center;
-    margin:0 auto; max-width:360px;
-  }
+      /* Surfaces */
+      --surface-obsidian-canvas: #132322;
+      --surface-deep-card: #0e1a19;
+      --surface-mint-card: #edf7f5;
+      --surface-white-panel: #ffffff;
+    }
 
-  /* layanan */
-  .offer{
-    background:var(--white); border:1px solid var(--border); padding:22px 20px; margin-bottom:14px;
-  }
-  .offer:last-child{ margin-bottom:0; }
-  .offer-top{ display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
-  .offer-idx{ font-family:'Fraunces',serif; font-style:italic; font-size:13px; color:var(--gold); }
-  .offer-name{ font-family:'Fraunces',serif; font-weight:600; font-size:18px; }
-  .offer-desc{ font-size:13px; color:var(--gray); line-height:1.7; margin:0; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* portofolio */
-  .works-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
-  .work-item{
-    position:relative; aspect-ratio:3/4; overflow:hidden;
-    background:var(--white); border:1px solid var(--border);
-  }
-  .work-item img{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
-  }
-  .work-placeholder{
-    position:absolute; inset:0; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:6px; padding:10px; text-align:center;
-  }
-  .work-placeholder .num{ font-family:'Fraunces',serif; font-style:italic; font-size:15px; color:var(--gold); }
-  .work-placeholder .txt{ font-size:9.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--gray); }
-  .works-note{
-    font-size:12px; color:var(--gray); text-align:center; line-height:1.7;
-    margin:16px auto 0; max-width:320px;
-  }
-  .works-note a{ color:var(--gold); font-weight:600; text-decoration:none; }
+    body {
+      background: var(--color-obsidian-shell);
+      color: var(--color-pure-white);
+      font-family: var(--font-aeonik);
+      font-size: var(--text-body);
+      line-height: var(--leading-body);
+      letter-spacing: var(--tracking-body);
+      overflow-x: hidden;
+    }
 
-  /* CTA */
-  .action{
-    background:var(--dark); color:var(--offwhite); text-align:center; padding:40px 26px; margin:0 20px;
-  }
-  .action .label{ color:#C9A96E; }
-  .action h2{ color:var(--offwhite); margin-bottom:10px; }
-  .action p{
-    font-size:13px; color:#C7C0B2; line-height:1.75; margin:0 auto 22px; max-width:320px;
-  }
-  .action .btn-wa{ background:var(--offwhite); color:var(--dark); }
-  .action .btn-wa .corner-tl, .action .btn-wa .corner-tr,
-  .action .btn-wa .corner-bl, .action .btn-wa .corner-br{ border-color:var(--dark); opacity:0.35; }
+    .container {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 0 var(--spacing-24);
+    }
 
-  /* footer */
-  footer{ text-align:center; padding:34px 24px 40px; }
-  footer .foot-logo{ font-family:'Fraunces',serif; font-weight:600; font-size:15px; margin-bottom:12px; }
-  footer .foot-logo span{ color:var(--gold); }
-  footer .foot-links{
-    display:flex; flex-direction:column; gap:6px; align-items:center;
-    font-size:12.5px; color:var(--gray); margin-bottom:16px;
-  }
-  footer .foot-links a{ text-decoration:none; color:var(--gray); }
-  footer .foot-links a:hover{ color:var(--gold); }
-  footer .foot-copy{ font-size:10.5px; color:#A69B87; letter-spacing:0.03em; }
-</style>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    img, svg { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    h1, h2, h3 {
+      font-family: var(--font-aeonikfono);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .eyebrow {
+      font-family: var(--font-aeonikfono);
+      font-size: 9px;
+      font-weight: var(--font-weight-regular);
+      letter-spacing: 0.45px;
+      text-transform: uppercase;
+      color: var(--color-neon-pulse);
+      margin-bottom: var(--spacing-16);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-8);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--color-neon-pulse);
+      flex-shrink: 0;
+    }
+    .eyebrow.light {
+      color: var(--color-obsidian-shell);
+    }
+    .eyebrow.light::before {
+      background: var(--color-obsidian-shell);
+    }
+
+    .section-title {
+      font-size: var(--text-heading);
+      line-height: var(--leading-heading);
+      font-weight: var(--font-weight-medium);
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--color-neon-pulse);
+    }
+    .section-title.light em {
+      color: var(--color-obsidian-shell);
+    }
+
+    .section-desc {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      max-width: 540px;
+      line-height: var(--leading-body);
+      margin-top: var(--spacing-16);
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-center .section-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-8);
+      padding: 14px 28px;
+      font-family: var(--font-aeonik);
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-regular);
+      line-height: 1;
+      border-radius: var(--radius-buttons);
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      letter-spacing: var(--tracking-body);
+    }
+    .btn-primary {
+      background: var(--color-neon-pulse);
+      color: var(--color-obsidian-shell);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.08);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-pure-white);
+      border: 1.5px solid var(--color-pure-white);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    .btn-dark {
+      background: transparent;
+      color: var(--color-pure-white);
+      font-size: 15px;
+      padding: 14px 20px;
+    }
+    .btn-dark:hover {
+      color: var(--color-neon-pulse);
+    }
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: var(--text-body-sm);
+    }
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* ---- Cards ---- */
+    .card-light {
+      background: var(--color-mint-frost);
+      border-radius: var(--radius-largecards);
+      padding: var(--spacing-48);
+      box-shadow: var(--shadow-md);
+      color: var(--color-obsidian-shell);
+    }
+    .card-light .eyebrow {
+      color: var(--color-obsidian-shell);
+    }
+    .card-light .eyebrow::before {
+      background: var(--color-obsidian-shell);
+    }
+    .card-dark {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-largecards);
+      padding: var(--spacing-48);
+    }
+
+    /* ---- Layout sections ---- */
+    section {
+      padding: var(--spacing-80) 0;
+    }
+    .section-dark {
+      background: var(--color-obsidian-shell);
+    }
+    .section-light {
+      background: var(--color-mint-frost);
+      color: var(--color-obsidian-shell);
+    }
+    .section-light .section-desc {
+      color: var(--color-slate-text);
+    }
+    .section-light .eyebrow {
+      color: var(--color-obsidian-shell);
+    }
+    .section-light .eyebrow::before {
+      background: var(--color-obsidian-shell);
+    }
+
+    .section-head {
+      margin-bottom: var(--spacing-48);
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    nav {
+      background: var(--color-obsidian-shell);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--spacing-24);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: var(--font-aeonikfono);
+      font-size: 20px;
+      font-weight: var(--font-weight-medium);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span {
+      color: var(--color-neon-pulse);
+    }
+    .nav-links {
+      display: none;
+      gap: var(--spacing-32);
+      font-size: 15px;
+      font-weight: var(--font-weight-regular);
+      color: var(--color-pure-white);
+      letter-spacing: var(--tracking-body);
+    }
+    .nav-links a:hover {
+      color: var(--color-neon-pulse);
+    }
+    .nav-cta {
+      display: none;
+    }
+    .nav-toggle {
+      width: 24px;
+      height: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      height: 1.5px;
+      width: 100%;
+      background: var(--color-pure-white);
+      border-radius: 2px;
+      transition: 0.2s;
+    }
+    @media (min-width: 820px) {
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-flex; }
+      .nav-toggle { display: none; }
+    }
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      padding: var(--spacing-16) var(--spacing-24) var(--spacing-24);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      padding: var(--spacing-12) 0;
+      font-size: 15px;
+      color: var(--color-pure-white);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      letter-spacing: var(--tracking-body);
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile .btn { margin-top: var(--spacing-16); justify-content: center; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      padding: var(--spacing-80) 0 var(--spacing-64);
+      text-align: center;
+      background: var(--color-obsidian-shell);
+    }
+    .hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: var(--text-display);
+      line-height: var(--leading-display);
+      font-weight: var(--font-weight-medium);
+      max-width: 800px;
+      margin: 0 auto var(--spacing-24);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--color-neon-pulse);
+    }
+    .hero .lead {
+      font-size: var(--text-body-lg);
+      color: var(--color-slate-text);
+      max-width: 560px;
+      margin: 0 auto var(--spacing-40);
+      line-height: var(--leading-body-lg);
+    }
+    .hero-ctas {
+      display: flex;
+      gap: var(--spacing-16);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-16);
+    }
+    .hero-note {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      color: var(--color-slate-text);
+      font-weight: var(--font-weight-regular);
+    }
+
+    /* ============================================================
+       PROBLEM / SOLUTION
+       ============================================================ */
+    .ps-grid {
+      display: grid;
+      gap: var(--spacing-16);
+    }
+    .ps-item {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-cards);
+      padding: var(--spacing-24);
+      display: flex;
+      gap: var(--spacing-16);
+      align-items: flex-start;
+    }
+    .ps-item .mark {
+      font-family: var(--font-aeonikfono);
+      font-style: italic;
+      color: var(--color-neon-pulse);
+      font-size: 18px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+    .ps-item p {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body);
+    }
+    .solution-block {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-largecards);
+      padding: var(--spacing-48);
+      margin-top: var(--spacing-40);
+    }
+    .solution-block p {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body);
+    }
+    .solution-block p + p {
+      margin-top: var(--spacing-16);
+    }
+    .solution-block strong {
+      color: var(--color-pure-white);
+      font-weight: var(--font-weight-regular);
+    }
+
+    /* ============================================================
+       LAYANAN (VALUE)
+       ============================================================ */
+    .value-grid {
+      display: grid;
+      gap: var(--spacing-16);
+    }
+    .value-item {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-cards);
+      padding: var(--spacing-24);
+      display: flex;
+      gap: var(--spacing-16);
+      align-items: flex-start;
+    }
+    .value-item .ic {
+      color: var(--color-neon-pulse);
+      font-size: 20px;
+      font-weight: var(--font-weight-regular);
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+    .value-item p {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body);
+    }
+    .value-item strong {
+      color: var(--color-pure-white);
+      font-weight: var(--font-weight-regular);
+    }
+
+    /* ============================================================
+       PROJECTS
+       ============================================================ */
+    .project-grid {
+      display: grid;
+      gap: var(--spacing-24);
+    }
+    .project-card {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-largecards);
+      overflow: hidden;
+      transition: 0.15s;
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+    }
+    .project-visual {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-visual.fajar {
+      background: radial-gradient(circle at 20% 30%, rgba(61,220,145,0.12), transparent 50%),
+                  linear-gradient(145deg, #0e1a19, #1a2a28);
+    }
+    .project-visual.crypto {
+      background: radial-gradient(circle at 80% 25%, rgba(61,220,145,0.10), transparent 40%),
+                  linear-gradient(145deg, #0e1a19, #1a2a28);
+    }
+    .project-screen {
+      width: 72%;
+      height: 96px;
+      background: rgba(14,26,25,0.8);
+      border: 1px solid rgba(61,220,145,0.2);
+      border-radius: var(--radius-smallelements);
+      padding: var(--spacing-16) var(--spacing-24);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .project-screen .bar {
+      height: 4px;
+      width: 30%;
+      background: var(--color-neon-pulse);
+      opacity: 0.7;
+      border-radius: 3px;
+      margin-bottom: var(--spacing-12);
+    }
+    .project-screen .line {
+      height: 3px;
+      background: #2a3d3a;
+      border-radius: 3px;
+      margin-bottom: 6px;
+    }
+    .project-screen .line.short { width: 40%; }
+    .project-screen .line.mid { width: 60%; }
+    .project-screen .line.long { width: 80%; }
+
+    .project-body {
+      padding: var(--spacing-24) var(--spacing-24) var(--spacing-32);
+    }
+    .project-type {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      color: var(--color-neon-pulse);
+      font-weight: var(--font-weight-regular);
+      margin-bottom: 4px;
+    }
+    .project-name {
+      font-family: var(--font-aeonikfono);
+      font-size: 24px;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 2px;
+    }
+    .project-status {
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+      margin-bottom: var(--spacing-16);
+    }
+    .project-desc {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body);
+      margin-bottom: var(--spacing-16);
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-24);
+    }
+    .project-tags span {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      color: var(--color-slate-text);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-smallelements);
+      padding: 4px 12px;
+    }
+    .project-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--spacing-16);
+    }
+
+    /* ============================================================
+       SHOWCASE (Demo)
+       ============================================================ */
+    .showcase-grid {
+      display: grid;
+      gap: var(--spacing-24);
+    }
+    .showcase-card {
+      background: var(--color-mint-frost);
+      border-radius: var(--radius-largecards);
+      overflow: hidden;
+      color: var(--color-obsidian-shell);
+      box-shadow: var(--shadow-md);
+      transition: 0.15s;
+    }
+    .showcase-card:hover {
+      transform: translateY(-2px);
+    }
+    .showcase-swatch {
+      height: 60px;
+      display: flex;
+    }
+    .showcase-swatch span { flex: 1; }
+    .showcase-body {
+      padding: var(--spacing-24);
+    }
+    .showcase-pkg {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      color: var(--color-neon-pulse);
+      font-weight: var(--font-weight-regular);
+      margin-bottom: 2px;
+    }
+    .showcase-name {
+      font-family: var(--font-aeonikfono);
+      font-size: 24px;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 2px;
+    }
+    .showcase-pos {
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+      margin-bottom: var(--spacing-16);
+    }
+    .showcase-desc {
+      font-size: var(--text-body);
+      line-height: var(--leading-body);
+      margin-bottom: var(--spacing-24);
+    }
+    .showcase-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--spacing-16);
+    }
+    .showcase-foot .btn-ghost {
+      color: var(--color-obsidian-shell);
+      border-color: var(--color-stone-border);
+    }
+    .showcase-foot .btn-ghost:hover {
+      background: rgba(0,0,0,0.03);
+    }
+
+    /* ============================================================
+       PRICING
+       ============================================================ */
+    .price-grid {
+      display: grid;
+      gap: var(--spacing-24);
+    }
+    .price-card {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-largecards);
+      padding: var(--spacing-40) var(--spacing-32);
+      position: relative;
+      transition: 0.15s;
+    }
+    .price-card.reco {
+      border: 1px solid var(--color-neon-pulse);
+      background: var(--color-obsidian-shell);
+    }
+    .price-card.reco .price-badge {
+      position: absolute;
+      top: -12px;
+      left: var(--spacing-24);
+      background: var(--color-neon-pulse);
+      color: var(--color-obsidian-shell);
+      font-size: 9px;
+      font-weight: var(--font-weight-regular);
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+      padding: 4px 16px;
+      border-radius: var(--radius-buttons);
+    }
+    .price-name {
+      font-family: var(--font-aeonikfono);
+      font-size: 24px;
+      font-weight: var(--font-weight-medium);
+    }
+    .price-card.reco .price-name {
+      color: var(--color-neon-pulse);
+    }
+    .price-pos {
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+      margin: 4px 0 var(--spacing-24);
+    }
+    .price-amount {
+      font-family: var(--font-aeonikfono);
+      font-size: 40px;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--spacing-32);
+    }
+    .price-amount sup {
+      font-size: 18px;
+      opacity: 0.6;
+      margin-right: 2px;
+    }
+    .price-feat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-32);
+    }
+    .price-feat span {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      padding-left: var(--spacing-16);
+      position: relative;
+    }
+    .price-feat span::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--color-neon-pulse);
+    }
+
+    .custom-card {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-largecards);
+      padding: var(--spacing-32) var(--spacing-40);
+      margin-top: var(--spacing-24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--spacing-24);
+    }
+    .custom-left .price-name {
+      font-size: 20px;
+    }
+    .custom-left p {
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+      margin-top: 2px;
+      max-width: 360px;
+      line-height: var(--leading-body-sm);
+    }
+    .custom-right {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-24);
+      flex-wrap: wrap;
+    }
+    .custom-price {
+      font-family: var(--font-aeonikfono);
+      font-size: 28px;
+      font-weight: var(--font-weight-medium);
+      white-space: nowrap;
+    }
+    .custom-price small {
+      display: block;
+      font-size: 9px;
+      font-weight: var(--font-weight-regular);
+      color: var(--color-slate-text);
+      text-transform: uppercase;
+      letter-spacing: 0.45px;
+    }
+
+    .terms-note {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: var(--spacing-40);
+      padding-top: var(--spacing-40);
+    }
+    .terms-note ul {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-8);
+    }
+    .terms-note li {
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body-sm);
+      padding-left: var(--spacing-16);
+      position: relative;
+    }
+    .terms-note li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+    }
+
+    /* ============================================================
+       PROCESS
+       ============================================================ */
+    .process-list {
+      display: flex;
+      flex-direction: column;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .process-item {
+      display: flex;
+      gap: var(--spacing-24);
+      padding: var(--spacing-24) 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .process-item:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .process-item .num {
+      font-family: var(--font-aeonikfono);
+      font-size: 28px;
+      font-weight: var(--font-weight-medium);
+      color: var(--color-neon-pulse);
+      min-width: 48px;
+    }
+    .process-item h3 {
+      font-size: 20px;
+      font-weight: var(--font-weight-medium);
+      margin-bottom: 2px;
+    }
+    .process-item p {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body);
+    }
+
+    /* ============================================================
+       FAQ
+       ============================================================ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-16);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--color-deep-abyss);
+      border-radius: var(--radius-cards);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--color-pure-white);
+      padding: var(--spacing-24);
+      font-family: var(--font-aeonik);
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-regular);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-16);
+      cursor: pointer;
+    }
+    .faq-q .plus {
+      font-size: 20px;
+      color: var(--color-neon-pulse);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-q .plus {
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-a p {
+      padding: 0 var(--spacing-24) var(--spacing-24);
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      line-height: var(--leading-body);
+    }
+
+    /* ============================================================
+       FINAL CTA
+       ============================================================ */
+    .final-cta {
+      text-align: center;
+      padding: var(--spacing-80) 0;
+      background: var(--color-obsidian-shell);
+    }
+    .final-cta h2 {
+      font-size: var(--text-heading-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: var(--leading-heading-lg);
+      margin-bottom: var(--spacing-16);
+    }
+    .final-cta h2 em {
+      font-style: italic;
+      color: var(--color-neon-pulse);
+    }
+    .final-cta p {
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      max-width: 420px;
+      margin: 0 auto var(--spacing-40);
+      line-height: var(--leading-body);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: var(--spacing-64) 0 var(--spacing-48);
+    }
+    .foot-top {
+      margin-bottom: var(--spacing-32);
+    }
+    .foot-logo {
+      font-family: var(--font-aeonikfono);
+      font-size: 20px;
+      font-weight: var(--font-weight-medium);
+      letter-spacing: -0.02em;
+    }
+    .foot-logo span { color: var(--color-neon-pulse); }
+    .foot-tag {
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+    }
+    .foot-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-24) var(--spacing-40);
+      font-size: var(--text-body);
+      color: var(--color-slate-text);
+      margin-bottom: var(--spacing-32);
+    }
+    .foot-links a:hover {
+      color: var(--color-neon-pulse);
+    }
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--spacing-8);
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+    }
+
+    /* ============================================================
+       CHATBOT (FAB)
+       ============================================================ */
+    .chat-fab {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-neon-pulse);
+      color: var(--color-obsidian-shell);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+      transition: transform 0.2s;
+    }
+    .chat-fab:hover { transform: scale(0.95); }
+    .chat-fab .ic-close { display: none; }
+    .chat-fab.open .ic-chat { display: none; }
+    .chat-fab.open .ic-close { display: block; }
+
+    .chat-panel {
+      position: fixed;
+      right: 24px;
+      bottom: 92px;
+      z-index: 199;
+      width: 360px;
+      max-width: calc(100vw - 48px);
+      max-height: 520px;
+      background: var(--color-deep-abyss);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-largecards);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    .chat-panel.open { display: flex; }
+
+    .chat-head {
+      padding: var(--spacing-16) var(--spacing-20);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-12);
+    }
+    .chat-head .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4CAF50;
+      flex-shrink: 0;
+    }
+    .chat-head .ti {
+      flex: 1;
+      min-width: 0;
+    }
+    .chat-head .ti strong {
+      display: block;
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-regular);
+    }
+    .chat-head .ti span {
+      display: block;
+      font-size: var(--text-body-sm);
+      color: var(--color-slate-text);
+    }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--spacing-16);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-12);
+      min-height: 140px;
+      max-height: 280px;
+    }
+    .chat-msg {
+      max-width: 88%;
+      font-size: var(--text-body-sm);
+      line-height: var(--leading-body-sm);
+      padding: 10px 16px;
+      border-radius: var(--radius-smallelements);
+    }
+    .chat-msg.bot {
+      background: var(--color-obsidian-shell);
+      color: var(--color-slate-text);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+    .chat-msg.user {
+      background: var(--color-neon-pulse);
+      color: var(--color-obsidian-shell);
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+      font-weight: var(--font-weight-regular);
+    }
+    .chat-msg a {
+      color: var(--color-neon-pulse);
+      text-decoration: underline;
+    }
+    .chat-msg.user a { color: var(--color-obsidian-shell); }
+
+    .chat-suggest {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-8);
+      padding: var(--spacing-8) var(--spacing-16) var(--spacing-12);
+    }
+    .chat-suggest button {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--color-slate-text);
+      font-size: 11px;
+      padding: 6px 16px;
+      border-radius: var(--radius-buttons);
+      cursor: pointer;
+      font-family: var(--font-aeonik);
+      transition: 0.15s;
+    }
+    .chat-suggest button:hover {
+      border-color: var(--color-neon-pulse);
+      color: var(--color-pure-white);
+    }
+
+    .chat-input-row {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: var(--spacing-12);
+      display: flex;
+      gap: var(--spacing-8);
+      flex-shrink: 0;
+    }
+    .chat-input-row input {
+      flex: 1;
+      min-width: 0;
+      background: var(--color-obsidian-shell);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-buttons);
+      padding: 10px 16px;
+      color: var(--color-pure-white);
+      font-size: var(--text-body-sm);
+      font-family: var(--font-aeonik);
+    }
+    .chat-input-row input:focus {
+      outline: none;
+      border-color: var(--color-neon-pulse);
+    }
+    .chat-input-row button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-neon-pulse);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .chat-input-row button svg {
+      width: 18px;
+      height: 18px;
+      color: var(--color-obsidian-shell);
+    }
+    .chat-disclaimer {
+      font-size: 9px;
+      color: var(--color-slate-text);
+      text-align: center;
+      padding: 0 var(--spacing-16) var(--spacing-12);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (min-width: 600px) {
+      .ps-grid { grid-template-columns: repeat(2, 1fr); }
+      .value-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-grid { grid-template-columns: repeat(3, 1fr); }
+      .price-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 599px) {
+      .hero { padding: var(--spacing-48) 0; }
+      section { padding: var(--spacing-48) 0; }
+      .container { padding: 0 var(--spacing-16); }
+      .nav-inner { padding: 12px var(--spacing-16); }
+      .nav-mobile { padding: var(--spacing-16); }
+      .card-light, .card-dark { padding: var(--spacing-24); }
+      .project-visual { height: 140px; }
+      .project-screen { height: 72px; padding: var(--spacing-12) var(--spacing-16); }
+      .price-card { padding: var(--spacing-24); }
+      .custom-card { flex-direction: column; align-items: stretch; }
+      .custom-right { justify-content: flex-start; }
+      .chat-panel { right: 12px; bottom: 80px; width: calc(100vw - 24px); max-height: calc(100vh - 140px); }
+      .chat-fab { right: 12px; bottom: 12px; width: 50px; height: 50px; }
+    }
+  </style>
 </head>
 <body>
-
-<div class="wrap">
-
-  <div class="top">
-    <div class="logo frame">
-      <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
-      <img src="assets/logo/logo.png" alt="INFRAME.STUDIO"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="logo-fallback" style="display:none; align-items:center; justify-content:center;">
-        IN<span>FRAME</span>.STUDIO
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">Kavelo<span>Lab</span></a>
+      <div class="nav-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#projects">Projects</a>
+        <a href="#showcase">Demo</a>
+        <a href="#harga">Harga</a>
+        <a href="#proses">Proses</a>
+        <a href="#faq">FAQ</a>
+        <a href="lead-agent.html" style="color:var(--color-neon-pulse);">Order</a>
       </div>
+      <a class="btn btn-primary btn-sm nav-cta" href="lead-agent.html">Pesan Website</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile">
+      <a href="#layanan">Layanan</a>
+      <a href="#projects">Projects</a>
+      <a href="#showcase">Demo</a>
+      <a href="#harga">Harga</a>
+      <a href="#proses">Proses</a>
+      <a href="#faq">FAQ</a>
+      <a href="lead-agent.html" style="color:var(--color-neon-pulse);">Order</a>
+      <a class="btn btn-primary btn-sm" href="lead-agent.html">Pesan Website</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero" id="top">
+    <div class="container">
+      <p class="eyebrow">AI &amp; Technology Lab</p>
+      <h1>Bangun <em>presence digital</em> dengan pendekatan teknologi.</h1>
+      <p class="lead">KaveloLab bantu bisnis dan personal brand punya website yang profesional. Plus eksperimen AI dan project teknologi sebagai bagian dari proses belajar.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="lead-agent.html">Pesan Website</a>
+        <a class="btn btn-ghost" href="#projects">Lihat Projects</a>
+      </div>
+      <p class="hero-note">Website · AI Experiments · Technology Projects</p>
     </div>
   </div>
 
-  <div class="masthead">
-    <h1>Capture the moment<br><em>keep the feeling.</em></h1>
-    <p class="sub">Self Photo &nbsp;·&nbsp; Photobox</p>
-    <p class="lead">Studio foto mandiri untuk pelajar & siapa saja yang ingin hasil foto sendiri, praktis dan menyenangkan.</p>
-    <a class="btn-wa frame" href="https://wa.me/6288214960053?text=Halo%20INFRAME.STUDIO%2C%20saya%20mau%20booking%20sesi%20foto." target="_blank" rel="noopener noreferrer">
-      <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
-      <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.31.65 4.47 1.78 6.31L4 29l7.9-1.74A11.9 11.9 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 21.8c-1.94 0-3.75-.55-5.28-1.5l-.38-.23-4.7 1.03 1.02-4.58-.25-.4A9.76 9.76 0 0 1 5.2 15C5.2 9.03 10.03 4.2 16 4.2S26.8 9.03 26.8 15 21.97 24.8 16 24.8zm5.4-7.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.47-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
-      Booking via WhatsApp
-    </a>
+  <!-- ===== PROBLEM ===== -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow">Masalah</p>
+        <h2 class="section-title">Bisnis bagus, tapi <em>nggak punya</em> tempat online sendiri.</h2>
+        <p class="section-desc">Calon customer susah nemuin kamu, dan kelihatan kurang profesional dibanding kompetitor.</p>
+      </div>
+      <div class="ps-grid">
+        <div class="ps-item"><span class="mark">—</span><p>Belum punya website — customer cuma bisa hubungi lewat DM atau chat satu-satu.</p></div>
+        <div class="ps-item"><span class="mark">—</span><p>Cuma andelin IG atau WA yang gampang tenggelam di antara notifikasi lain.</p></div>
+        <div class="ps-item"><span class="mark">—</span><p>Kelihatan kurang profesional dibanding kompetitor yang sudah punya website.</p></div>
+        <div class="ps-item"><span class="mark">—</span><p>Nggak punya ruang digital yang bisa diatur dan dikembangin sendiri.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOLUTION ===== -->
+  <section class="section-dark" style="padding-top:0;">
+    <div class="container">
+      <div class="solution-block">
+        <p><strong>KaveloLab bangun website yang jadi rumah digital bisnis kamu</strong> — tempat calon customer lihat siapa kamu, apa yang kamu tawarkan, dan langsung diarahkan untuk chat via WhatsApp.</p>
+        <p>Bukan sekadar "punya website" — tapi website yang beneran dipakai untuk bantu bisnis tampil lebih profesional dan memudahkan customer mengambil tindakan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LAYANAN ===== -->
+  <section class="section-light" id="layanan">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow light">Layanan</p>
+        <h2 class="section-title light">Fokus ke satu hal: <em>bikin website</em> yang mantap.</h2>
+        <p class="section-desc">Dari nol sampai deploy — tanpa nebeng jasa lain.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-item" style="background:var(--color-pure-white);"><span class="ic">✦</span><p><strong>1 halaman</strong> — landing page simpel buat usaha kecil yang baru mulai online.</p></div>
+        <div class="value-item" style="background:var(--color-pure-white);"><span class="ic">✦</span><p><strong>Multi halaman</strong> — struktur lengkap: beranda, tentang, layanan, portfolio, kontak.</p></div>
+        <div class="value-item" style="background:var(--color-pure-white);"><span class="ic">✦</span><p><strong>Desain sesuai brief</strong> — layout, warna, tipografi disesuaikan dengan karakter bisnis kamu.</p></div>
+        <div class="value-item" style="background:var(--color-pure-white);"><span class="ic">✦</span><p><strong>Deploy &amp; serah terima</strong> — website langsung online, kamu tinggal pakai.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="section-dark" id="projects">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow">Projects &amp; Experiments</p>
+        <h2 class="section-title">Eksplorasi teknologi di luar <em>website biasa</em>.</h2>
+        <p class="section-desc">Beberapa project yang sedang dan pernah dikerjakan sebagai bagian dari eksperimen KaveloLab di AI dan teknologi.</p>
+      </div>
+      <div class="project-grid">
+        <!-- Fajar OS -->
+        <div class="project-card">
+          <div class="project-visual fajar">
+            <div class="project-screen">
+              <div class="bar"></div>
+              <div class="line long"></div>
+              <div class="line mid"></div>
+              <div class="line short"></div>
+              <div class="line long"></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">AI Workspace</div>
+            <div class="project-name">Fajar OS</div>
+            <div class="project-status">Prototype · In Development</div>
+            <p class="project-desc">Eksperimen AI Workspace pribadi yang menggabungkan percakapan, memory, dan berbagai kemampuan AI dalam satu ruang kerja.</p>
+            <div class="project-tags"><span>AI</span><span>Workspace</span><span>Prototype</span></div>
+            <div class="project-foot">
+              <a class="btn btn-primary btn-sm" href="https://fajar-os.vercel.app" target="_blank" rel="noopener">Buka Fajar OS →</a>
+            </div>
+          </div>
+        </div>
+        <!-- Crypto Agent -->
+        <div class="project-card">
+          <div class="project-visual crypto">
+            <div class="project-screen">
+              <div class="bar"></div>
+              <div class="line short"></div>
+              <div class="line long"></div>
+              <div class="line mid"></div>
+              <div class="line long"></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">AI Agent</div>
+            <div class="project-name">Crypto Agent</div>
+            <div class="project-status">Experimental Project</div>
+            <p class="project-desc">Eksperimen AI agent untuk membantu olah dan analisis informasi crypto dalam antarmuka khusus.</p>
+            <div class="project-tags"><span>AI</span><span>Crypto</span><span>Experiment</span></div>
+            <div class="project-foot">
+              <a class="btn btn-primary btn-sm" href="https://kavelo-crypto-agent.vercel.app" target="_blank" rel="noopener">Buka Crypto Agent →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="solution-block" style="margin-top:var(--spacing-40);">
+        <p><strong>Status project bisa berubah.</strong> Yang di atas masih eksperimen — bisa berkembang, berubah, atau menjadi produk jadi. Tujuannya bukan sekadar demo, tapi belajar membuat sesuatu yang benar-benar terpakai.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOWCASE ===== -->
+  <section class="section-light" id="showcase">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow light">Demo Website</p>
+        <h2 class="section-title light">Tiga paket, <em>tiga level</em> kematangan.</h2>
+        <p class="section-desc">Demo live yang bisa kamu buka langsung — bukan mockup. Masing-masing menunjukkan range KaveloLab.</p>
+      </div>
+      <div class="showcase-grid">
+        <!-- Starter -->
+        <div class="showcase-card">
+          <div class="showcase-swatch" style="background:#3A2418;"><span style="background:#F3C77D;"></span><span style="background:#D98C4A;"></span><span style="background:#7A4430;"></span></div>
+          <div class="showcase-body">
+            <div class="showcase-pkg">Starter</div>
+            <div class="showcase-name">Senja Coffee</div>
+            <div class="showcase-pos">Kebutuhan simpel</div>
+            <p class="showcase-desc">One-page website hangat &amp; minimalis untuk usaha kecil — profil, menu, dan CTA WhatsApp.</p>
+            <div class="showcase-foot">
+              <a class="btn btn-ghost btn-sm" href="https://fajarnurkholiq.github.io/Senja-Coffee-demo-started/" target="_blank" rel="noopener">Lihat Demo</a>
+            </div>
+          </div>
+        </div>
+        <!-- Business -->
+        <div class="showcase-card">
+          <div class="showcase-swatch" style="background:#EDEBE6;"><span style="background:#FAFAF8;"></span><span style="background:#2F4A3E;"></span><span style="background:#14171A;"></span></div>
+          <div class="showcase-body">
+            <div class="showcase-pkg">Business</div>
+            <div class="showcase-name">BENTANG</div>
+            <div class="showcase-pos">Tampil lebih profesional</div>
+            <p class="showcase-desc">Website multi-halaman dengan navigasi lengkap untuk bisnis yang butuh presentasi matang.</p>
+            <div class="showcase-foot">
+              <a class="btn btn-ghost btn-sm" href="https://fajarnurkholiq.github.io/BENTANG-DEMO-BUSINESS/" target="_blank" rel="noopener">Lihat Demo</a>
+            </div>
+          </div>
+        </div>
+        <!-- Pro -->
+        <div class="showcase-card">
+          <div class="showcase-swatch" style="background:#0D0C10;"><span style="background:#0D0C10;"></span><span style="background:#6C5CE0;"></span><span style="background:#F4F1EA;"></span></div>
+          <div class="showcase-body">
+            <div class="showcase-pkg">Pro</div>
+            <div class="showcase-name">ARUNA</div>
+            <div class="showcase-pos">Pengalaman premium</div>
+            <p class="showcase-desc">Website editorial dengan art direction kuat, navigasi custom, dan presentasi karya yang ekspresif.</p>
+            <div class="showcase-foot">
+              <a class="btn btn-ghost btn-sm" href="https://fajarnurkholiq.github.io/aruna-demo-pro/" target="_blank" rel="noopener">Lihat Demo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HARGA ===== -->
+  <section class="section-dark" id="harga">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow">Investasi</p>
+        <h2 class="section-title">Pilih paket yang <em>cocok</em>.</h2>
+        <p class="section-desc">Makin lengkap kebutuhannya, makin besar paketnya. Belum yakin? Konsultasi dulu, gratis.</p>
+      </div>
+      <div class="price-grid">
+        <!-- Starter -->
+        <div class="price-card">
+          <div class="price-name">Starter</div>
+          <div class="price-pos">Kebutuhan simpel</div>
+          <div class="price-amount"><sup>Rp</sup>499K</div>
+          <div class="price-feat">
+            <span>1 halaman</span>
+            <span>Responsive mobile</span>
+            <span>WhatsApp CTA</span>
+            <span>Gallery / Portfolio</span>
+            <span>Basic on-page SEO</span>
+            <span>1× revisi</span>
+            <span>Deploy website</span>
+            <span>Estimasi 3 hari</span>
+          </div>
+          <a class="btn btn-ghost btn-block" href="lead-agent.html">Pilih Starter</a>
+        </div>
+        <!-- Business -->
+        <div class="price-card reco">
+          <span class="price-badge">Paling rame</span>
+          <div class="price-name">Business</div>
+          <div class="price-pos">Tampil lebih profesional</div>
+          <div class="price-amount"><sup>Rp</sup>999K</div>
+          <div class="price-feat">
+            <span>Maks. 5 halaman</span>
+            <span>Responsive mobile</span>
+            <span>WhatsApp CTA</span>
+            <span>Form kontak</span>
+            <span>Gallery / Portfolio</span>
+            <span>Basic on-page SEO</span>
+            <span>2× revisi</span>
+            <span>Deploy website</span>
+            <span>Estimasi 5 hari</span>
+          </div>
+          <a class="btn btn-primary btn-block" href="lead-agent.html">Pilih Business</a>
+        </div>
+        <!-- Pro -->
+        <div class="price-card">
+          <div class="price-name">Pro</div>
+          <div class="price-pos">Pengalaman premium</div>
+          <div class="price-amount"><sup>Rp</sup>1.499K</div>
+          <div class="price-feat">
+            <span>Maks. 8 halaman</span>
+            <span>Responsive mobile</span>
+            <span>WhatsApp CTA</span>
+            <span>Form kontak</span>
+            <span>Gallery / Portfolio</span>
+            <span>Basic on-page SEO</span>
+            <span>Layout lebih custom</span>
+            <span>3× revisi</span>
+            <span>Deploy website</span>
+            <span>Estimasi 7 hari</span>
+          </div>
+          <a class="btn btn-ghost btn-block" href="lead-agent.html">Pilih Pro</a>
+        </div>
+      </div>
+      <div class="custom-card">
+        <div class="custom-left">
+          <div class="price-name">Custom</div>
+          <p>Kebutuhan di luar paket — halaman, fitur, scope &amp; harga disesuaikan berdasarkan kompleksitas.</p>
+        </div>
+        <div class="custom-right">
+          <div class="custom-price"><small>Mulai</small>Rp2.499K</div>
+          <a class="btn btn-ghost btn-sm" href="lead-agent.html">Tanya Custom</a>
+        </div>
+      </div>
+      <div class="terms-note">
+        <p class="eyebrow">Ketentuan</p>
+        <ul>
+          <li>Revisi = perubahan minor teks, warna, gambar, atau layout — tidak termasuk redesign total atau halaman baru.</li>
+          <li>Konten teks, foto &amp; logo disiapkan klien; halaman tambahan di luar paket kena biaya.</li>
+          <li>Deploy default ke subdomain gratis (GitHub Pages / Cloudflare Pages). Custom domain &amp; hosting tersedia sebagai add-on.</li>
+          <li>Basic on-page SEO = setup title, meta description, heading structure, alt text — tidak menjamin ranking atau traffic tertentu.</li>
+          <li>Estimasi pengerjaan: Starter 3 hari, Business 5 hari, Pro 7 hari — tergantung kelengkapan konten klien.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROSES ===== -->
+  <section class="section-light" id="proses">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow light">Cara Order</p>
+        <h2 class="section-title light">Lima langkah, dari chat <em>sampai website</em> siap.</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-item"><span class="num">01</span><div><h3>Konsultasi</h3><p>Ceritakan kebutuhan bisnis kamu lewat WhatsApp.</p></div></div>
+        <div class="process-item"><span class="num">02</span><div><h3>Pilih Paket &amp; Kebutuhan</h3><p>Tentukan paket yang cocok dan detail halaman yang dibutuhkan.</p></div></div>
+        <div class="process-item"><span class="num">03</span><div><h3>Pengerjaan</h3><p>Website dikerjakan sesuai brief dan estimasi waktu paket.</p></div></div>
+        <div class="process-item"><span class="num">04</span><div><h3>Review &amp; Revisi</h3><p>Kamu cek hasilnya, revisi sesuai jatah paket yang dipilih.</p></div></div>
+        <div class="process-item"><span class="num">05</span><div><h3>Website Siap</h3><p>Website di-deploy dan siap dipakai untuk bisnis kamu.</p></div></div>
+      </div>
+      <div class="solution-block" style="margin-top:var(--spacing-40);max-width:680px;margin-left:auto;margin-right:auto;background:var(--color-pure-white);">
+        <p><strong>AI digunakan sebagai alat bantu</strong> di proses build untuk mempercepat development. Tapi setiap hasil tetap melalui review &amp; revisi manusia sebelum dinyatakan selesai.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section-dark" id="faq">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="eyebrow">Pertanyaan Umum</p>
+        <h2 class="section-title">Yang sering <em>ditanyakan</em>.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Bisa request desain sendiri? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Bisa. Desain disusun berdasarkan brief awal kamu dan bisa disesuaikan dalam batas revisi paket.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Website-nya responsif? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Ya, semua paket dibuat responsive — rapi di HP, tablet, dan desktop.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Berapa lama pengerjaan? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Starter 3 hari, Business 5 hari, Pro 7 hari — tergantung kelengkapan konten kamu.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Bisa revisi? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Bisa, sesuai jatah: Starter 1×, Business 2×, Pro 3×.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Domain &amp; hosting termasuk? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Deploy default ke subdomain gratis. Custom domain &amp; hosting tersedia sebagai add-on.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Gimana cara order? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Langsung chat WhatsApp, ceritakan kebutuhan bisnis kamu, nanti diarahkan ke paket yang cocok.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Website dibuat pakai AI? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Sebagian proses build menggunakan bantuan AI untuk percepatan, tapi setiap hasil tetap melalui review manusia.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Fajar OS sudah selesai? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Belum — Fajar OS masih prototype yang terus dikembangkan sebagai eksperimen AI Workspace.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Crypto Agent jadi produk final? <span class="plus">+</span></button>
+          <div class="faq-a"><p>Belum tentu — ini experimental project untuk menunjukkan eksplorasi KaveloLab di AI agent.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <div class="final-cta">
+    <div class="container">
+      <p class="eyebrow">Mulai Sekarang</p>
+      <h2>Siap punya website <em>sendiri?</em></h2>
+      <p>Chat dulu, ceritakan kebutuhan bisnis kamu — gratis, tanpa komitmen.</p>
+      <a class="btn btn-primary" href="lead-agent.html">Pesan Sekarang</a>
+    </div>
   </div>
 
-  <hr class="divider">
-
-  <section class="intro">
-    <p class="label">Tentang Kami</p>
-    <h2>INFRAME.STUDIO</h2>
-    <p>INFRAME.STUDIO menghadirkan dua layanan foto mandiri: Self Photo dan Photobox. Cocok untuk pelajar maupun umum yang ingin mengabadikan momen dengan cara yang simpel — booking langsung dari WhatsApp, tanpa ribet.</p>
-  </section>
-
-  <hr class="divider">
-
-  <section class="offers">
-    <p class="label">Layanan</p>
-    <h2>Pilihan Sesi Foto</h2>
-
-    <div class="offer">
-      <div class="offer-top">
-        <span class="offer-idx">01</span>
-        <span class="offer-name">Self Photo</span>
-      </div>
-      <p class="offer-desc">Studio foto mandiri yang memungkinkan kamu mengambil foto sendiri dengan konsep self-photo.</p>
-    </div>
-
-    <div class="offer">
-      <div class="offer-top">
-        <span class="offer-idx">02</span>
-        <span class="offer-name">Photobox</span>
-      </div>
-      <p class="offer-desc">Layanan foto menggunakan photobox untuk menghasilkan foto bersama dengan cara yang praktis dan menyenangkan.</p>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <section class="works">
-    <p class="label">Our Work</p>
-    <h2>Portofolio</h2>
-
-    <div class="works-grid">
-      <div class="work-item">
-        <div class="work-placeholder"><span class="num">01</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/1.jpg" alt="Portofolio INFRAME.STUDIO 1" loading="lazy" onerror="this.style.display='none';">
-      </div>
-      <div class="work-item">
-        <div class="work-placeholder"><span class="num">02</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/2.jpg" alt="Portofolio INFRAME.STUDIO 2" loading="lazy" onerror="this.style.display='none';">
-      </div>
-      <div class="work-item">
-        <div class="work-placeholder"><span class="num">03</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/3.jpg" alt="Portofolio INFRAME.STUDIO 3" loading="lazy" onerror="this.style.display='none';">
-      </div>
-      <div class="work-item">
-        <div class="work-placeholder"><span class="num">04</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/4.jpg" alt="Portofolio INFRAME.STUDIO 4" loading="lazy" onerror="this.style.display='none';">
-      </div>
-      <div class="work-item">
-        <div class="work-placeholder"><span class="num">05</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/5.jpg" alt="Portofolio INFRAME.STUDIO 5" loading="lazy" onerror="this.style.display='none';">
-      </div>
-      <div class="work-item">
-        <div class="work-placeholder"><span class="num">06</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/6.jpg" alt="Portofolio INFRAME.STUDIO 6" loading="lazy" onerror="this.style.display='none';">
-      </div>
-      <!-- <div class="work-item">
-        <div class="work-placeholder"><span class="num">07</span><span class="txt">Segera Hadir</span></div>
-        <img src="assets/portfolio/7.jpg" alt="Portofolio INFRAME.STUDIO 7" loading="lazy" onerror="this.style.display='none';">
-      </div>-->
-    </div>
-
-    <p class="works-note">Update terbaru kami ada di <a href="https://instagram.com/inframe.studio" target="_blank" rel="noopener noreferrer">@inframe.studio</a>.</p>
-  </section>
-
-  <!-- ===== SECTION BOOKING (GOOGLE FORM) ===== -->
-  <section style="padding-bottom: 10px;">
-    <p class="label">Booking</p>
-    <h2>Pesan Sesi Sekarang</h2>
-    <div class="booking-wrap frame" style="text-align: center; padding: 40px 22px; background: var(--white); border: 1px solid var(--border);">
-      <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
-      <p class="form-desc" style="margin-bottom: 30px; color: var(--gray);">
-        Klik tombol di bawah untuk isi form booking. Data akan otomatis tercatat di Google Sheets.
-      </p>
-      <a href="https://forms.gle/3tCs56U2vSgUVdnN6" target="_blank" rel="noopener" class="btn-wa frame" style="display: inline-flex; width: auto; min-width: 200px; justify-content: center;">
-        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
-        📋 Buka Form Booking
-      </a>
-      <p style="font-size: 12px; color: var(--gray); margin-top: 20px;">
-        Atau hubungi langsung via <a href="https://wa.me/6288214960053" target="_blank" style="color: var(--gold); font-weight: 600;">WhatsApp</a>.
-      </p>
-    </div>
-  </section>
-
-  <section style="padding-left:0; padding-right:0;">
-    <div class="action">
-      <p class="label">Siap Foto?</p>
-      <h2>Booking Sesimu Sekarang</h2>
-      <p>Chat kami langsung di WhatsApp untuk booking sesi Self Photo atau Photobox.</p>
-      <a class="btn-wa frame" href="https://wa.me/6288214960053?text=Halo%20INFRAME.STUDIO%2C%20saya%20mau%20booking%20sesi%20foto." target="_blank" rel="noopener noreferrer">
-        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
-        <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.373 3 4 8.373 4 15c0 2.31.65 4.47 1.78 6.31L4 29l7.9-1.74A11.9 11.9 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 21.8c-1.94 0-3.75-.55-5.28-1.5l-.38-.23-4.7 1.03 1.02-4.58-.25-.4A9.76 9.76 0 0 1 5.2 15C5.2 9.03 10.03 4.2 16 4.2S26.8 9.03 26.8 15 21.97 24.8 16 24.8zm5.4-7.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.47-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
-        Booking via WhatsApp
-      </a>
-    </div>
-  </section>
-
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <div class="foot-logo">IN<span>FRAME</span>.STUDIO</div>
-    <div class="foot-links">
-      <a href="https://instagram.com/inframe.studio" target="_blank" rel="noopener noreferrer">Instagram — @inframe.studio</a>
-      <a href="https://wa.me/6288214960053" target="_blank" rel="noopener noreferrer">WhatsApp — 0882-1496-0053</a>
+    <div class="container">
+      <div class="foot-top">
+        <div class="foot-logo">Kavelo<span>Lab</span></div>
+        <div class="foot-tag">AI &amp; Technology Lab — Website · AI · Technology Projects</div>
+      </div>
+      <div class="foot-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#projects">Projects</a>
+        <a href="#showcase">Demo</a>
+        <a href="#harga">Harga</a>
+        <a href="#proses">Proses</a>
+        <a href="#faq">FAQ</a>
+        <a href="lead-agent.html" style="color:var(--color-neon-pulse);">Order</a>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; KaveloLab</span>
+        <span>WhatsApp: +62 821-2175-9018</span>
+      </div>
     </div>
-    <div class="foot-copy">&copy; INFRAME.STUDIO</div>
   </footer>
 
-</div>
+  <!-- ===== CHATBOT ===== -->
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="KaveloLab Assistant" aria-hidden="true">
+    <div class="chat-head">
+      <span class="dot"></span>
+      <div class="ti">
+        <strong>KaveloLab Assistant</strong>
+        <span>Otomatis · balas cepat</span>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-suggest" id="chatSuggest">
+      <button type="button" data-q="harga">Harga paket?</button>
+      <button type="button" data-q="proses">Berapa lama?</button>
+      <button type="button" data-q="revisi">Bisa revisi?</button>
+      <button type="button" data-q="domain">Domain &amp; hosting?</button>
+      <button type="button" data-q="project">Ada project AI?</button>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Tulis pertanyaan..." autocomplete="off" />
+      <button type="button" id="chatSend" aria-label="Kirim">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg>
+      </button>
+    </div>
+    <p class="chat-disclaimer">Asisten otomatis dengan aturan sederhana — untuk pertanyaan detail, lanjut ke WhatsApp.</p>
+  </div>
+  <button class="chat-fab" id="chatFab" aria-label="Buka chat asisten" aria-expanded="false">
+    <svg class="ic-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
 
+  <script>
+    (function() {
+      // ---- Mobile nav ----
+      var toggle = document.querySelector('.nav-toggle');
+      var mobile = document.querySelector('.nav-mobile');
+      if (toggle && mobile) {
+        toggle.addEventListener('click', function() {
+          var open = mobile.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        mobile.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            mobile.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // ---- FAQ ----
+      document.querySelectorAll('.faq-q').forEach(function(btn, i) {
+        var item = btn.closest('.faq-item');
+        var answer = item.querySelector('.faq-a');
+        var id = 'faq-a-' + i;
+        answer.id = id;
+        btn.setAttribute('aria-controls', id);
+        btn.setAttribute('aria-expanded', 'false');
+
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+            if (openItem !== item) {
+              openItem.classList.remove('open');
+              openItem.querySelector('.faq-a').style.maxHeight = null;
+              openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+            }
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            btn.setAttribute('aria-expanded', 'true');
+          } else {
+            item.classList.remove('open');
+            answer.style.maxHeight = null;
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+
+      // ---- Chatbot ----
+      const WHATSAPP = "6282121759018";
+      function waLink(msg) {
+        return 'https://wa.me/' + WHATSAPP + (msg ? '?text=' + encodeURIComponent(msg) : '');
+      }
+
+      var RULES = [
+        { keys: ['harga', 'paket', 'price', 'biaya', 'mahal', 'murah'], answer: 'Ada 4 paket: <strong>Starter Rp499K</strong> (1 halaman), <strong>Business Rp999K</strong> (maks 5 halaman), <strong>Pro Rp1.499K</strong> (maks 8 halaman), dan <strong>Custom mulai Rp2.499K</strong>. Detail lengkap di <a href="#harga">Harga</a>.' },
+        { keys: ['proses', 'lama', 'berapa hari', 'estimasi', 'waktu'], answer: 'Estimasi: Starter 3 hari, Business 5 hari, Pro 7 hari — tergantung kelengkapan konten kamu.' },
+        { keys: ['revisi', 'ubah', 'ganti'], answer: 'Jatah revisi: Starter 1×, Business 2×, Pro 3×. Revisi = perubahan minor teks, warna, gambar, atau layout.' },
+        { keys: ['domain', 'hosting', 'subdomain'], answer: 'Deploy default ke subdomain gratis (GitHub Pages / Cloudflare Pages). Custom domain & hosting tersedia sebagai add-on.' },
+        { keys: ['seo'], answer: 'Semua paket sudah termasuk basic on-page SEO: title, meta description, heading structure, alt text. Tidak menjamin ranking tertentu.' },
+        { keys: ['demo', 'contoh', 'portfolio', 'lihat'], answer: 'Ada 3 demo: Senja Coffee (Starter), BENTANG (Business), dan ARUNA (Pro). Cek di <a href="#showcase">Demo</a>.' },
+        { keys: ['project', 'projects', 'fajar os', 'fajar', 'crypto agent', 'ai agent'], answer: 'KaveloLab juga punya technology projects. <a href="#projects">Fajar OS</a> (prototype AI Workspace) dan <a href="#projects">Crypto Agent</a> (experimental AI project).' },
+        { keys: ['fajar os', 'fajaros'], answer: 'Fajar OS adalah prototype AI Workspace yang sedang dikembangkan. <a href="https://fajar-os.vercel.app" target="_blank">Buka Fajar OS →</a>' },
+        { keys: ['crypto agent', 'crypto'], answer: 'Crypto Agent adalah experimental project KaveloLab di bidang AI agent & crypto. <a href="https://kavelo-crypto-agent.vercel.app" target="_blank">Buka Crypto Agent →</a>' },
+        { keys: ['ai', 'claude', 'pakai ai'], answer: 'Sebagian proses development menggunakan bantuan AI untuk mempercepat build. Hasil tetap direview & direvisi manusia.' },
+        { keys: ['mulai', 'order', 'pesan', 'cara'], answer: 'Gampang — langsung chat WhatsApp, ceritakan kebutuhan bisnis kamu, nanti diarahkan ke paket yang cocok.' },
+        { keys: ['responsive', 'hp', 'mobile'], answer: 'Ya, semua paket dibuat responsive — rapi di HP, tablet, dan desktop.' },
+        { keys: ['cafe', 'kopi', 'coffee', 'umkm', 'bisnis', 'toko', 'jasa', 'personal brand'], answer: 'KaveloLab cocok untuk UMKM, bisnis kecil, cafe, toko, personal brand, dan jasa lokal. Konsultasi gratis via WhatsApp.' },
+        { keys: ['halo', 'hai', 'hi', 'hello', 'pagi', 'siang', 'malam'], answer: 'Halo! 👋 Mau tanya soal harga, proses, revisi, demo website, atau project AI? Ketik pertanyaan kamu.' }
+      ];
+
+      function findAnswer(text) {
+        var t = text.toLowerCase();
+        for (var i = 0; i < RULES.length; i++) {
+          var rule = RULES[i];
+          for (var j = 0; j < rule.keys.length; j++) {
+            if (t.indexOf(rule.keys[j]) !== -1) return rule.answer;
+          }
+        }
+        return null;
+      }
+
+      var FALLBACK = 'Untuk pertanyaan ini aku belum punya jawaban pastinya — biar nggak salah info, langsung tanya via WhatsApp ya.';
+
+      var fab = document.getElementById('chatFab');
+      var panel = document.getElementById('chatPanel');
+      var body = document.getElementById('chatBody');
+      var input = document.getElementById('chatInput');
+      var sendBtn = document.getElementById('chatSend');
+      var suggest = document.getElementById('chatSuggest');
+      var opened = false;
+
+      function addMsg(text, who) {
+        var el = document.createElement('div');
+        el.className = 'chat-msg ' + who;
+        el.innerHTML = text;
+        body.appendChild(el);
+        body.scrollTop = body.scrollHeight;
+      }
+
+      function botReply(userText) {
+        var found = findAnswer(userText);
+        setTimeout(function() {
+          if (found) {
+            addMsg(found, 'bot');
+          } else {
+            addMsg(FALLBACK + ' <a href="' + waLink('Halo KaveloLab, saya mau tanya: ' + userText) + '" target="_blank" rel="noopener">Chat WhatsApp →</a>', 'bot');
+          }
+        }, 350);
+      }
+
+      function handleSend(text) {
+        text = (text || '').trim();
+        if (!text) return;
+        addMsg(text, 'user');
+        input.value = '';
+        botReply(text);
+      }
+
+      if (fab && panel) {
+        fab.addEventListener('click', function() {
+          var isOpen = panel.classList.toggle('open');
+          fab.classList.toggle('open', isOpen);
+          fab.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          panel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+          if (isOpen && !opened) {
+            opened = true;
+            addMsg('Halo! 👋 Aku asisten KaveloLab. Bisa bantu soal harga, proses, revisi, demo, dan project AI.', 'bot');
+          }
+          if (isOpen) input.focus();
+        });
+      }
+
+      if (sendBtn) sendBtn.addEventListener('click', function() { handleSend(input.value); });
+      if (input) input.addEventListener('keydown', function(e) { if (e.key === 'Enter') handleSend(input.value); });
+      if (suggest) suggest.addEventListener('click', function(e) {
+        var btn = e.target.closest('button[data-q]');
+        if (btn) handleSend(btn.getAttribute('data-q'));
+      });
+    })();
+  </script>
 </body>
 </html>
